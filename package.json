@@ -2,7 +2,6 @@
   "name": "xayb",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://a076902768.github.io/xayb",
   "scripts": {
     "dev": "nuxt",
     "build:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt build",
