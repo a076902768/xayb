@@ -20,6 +20,10 @@ import Scroll from '@/components/Scroll';
             @changeAnswer="changeAnswer"
           />
         </div>
+        <div class="button__container">
+          <div class="button button__clear" @click="clear">CLEAR</div>
+          <div class="button button__send" @click="checkAnswer">OK</div>
+        </div>
         <div class="history__container">
           <div class="history__title">HISTORY</div>
           <div class="history__list">
@@ -32,10 +36,6 @@ import Scroll from '@/components/Scroll';
               <span>{{ item.result }}</span>
             </div>
           </div>
-        </div>
-        <div class="button__container">
-          <div class="button button__clear" @click="clear">CLEAR</div>
-          <div class="button button__send" @click="checkAnswer">OK</div>
         </div>
       </div>
     </div>
@@ -220,7 +220,8 @@ export default {
   border-radius: 0.3rem;
   letter-spacing: 0.3rem;
   padding: 1rem 5rem;
-  border: solid 0.4rem transparent;
+  border-style: solid;
+  border-width: 0.4rem;
   transition: 0.45s;
 
   &__send {
@@ -251,6 +252,88 @@ export default {
     display: flex;
     justify-content: center;
     gap: 0 3rem;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .w-input-layout {
+    /deep/ .w-input {
+      &__box {
+        width: 8rem;
+        height: 8rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home {
+    gap: 3rem 0;
+  }
+  .button {
+    font-size: 1rem;
+    padding: 1rem 0 1rem 0;
+    border-width: 0.2rem;
+    width: 100%;
+
+    &:first-child {
+      margin-bottom: 1rem;
+    }
+
+    &__container {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .result {
+    min-height: 2rem;
+    font-size: 2rem;
+
+    &__title {
+      font-size: 2rem;
+    }
+  }
+
+  .history {
+    &__container {
+      margin: 0 auto;
+      position: relative;
+      width: 10rem;
+      border: solid 0.3rem #333;
+    }
+
+    &__title {
+      font-size: 1rem;
+    }
+
+    &__list {
+      height: 10rem;
+    }
+
+    &__item {
+      font-size: 0.8rem;
+      &:not(:last-child) {
+        border-bottom: solid 0.1rem #333;
+      }
+    }
+  }
+
+  .w-input-layout {
+    gap: 0 2rem;
+
+    /deep/ .w-input {
+      &__box {
+        width: 3rem;
+        height: 3rem;
+        border-width: 0.2rem;
+      }
+
+      &__input {
+        font-size: 2rem;
+        padding: 0 0.3rem;
+      }
+    }
   }
 }
 </style>
