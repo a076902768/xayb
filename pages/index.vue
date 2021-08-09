@@ -14,6 +14,7 @@ import Scroll from '@/components/Scroll';
           <Winput
             v-for="(item, index) in 4"
             :key="index"
+            :disabled="disabled"
             :total-answer="answer"
             :answer="answer[index]"
             :index="index"
@@ -46,6 +47,7 @@ import Scroll from '@/components/Scroll';
 export default {
   data() {
     return {
+      disabled: false,
       question: [null, null, null, null],
       answer: [null, null, null, null],
       history: [],
@@ -87,6 +89,7 @@ export default {
         }
       })
     },
+    // 檢查答案
     checkAnswer() {
       /*
       * 判斷規則:
@@ -125,9 +128,17 @@ export default {
       checkB()
       vm.result.A = questionAIndexArr.length
       vm.result.B = questionBIndexArr.length
+
+      if (vm.result.A === 4 && vm.result.B === 0) {
+        window.alert('答對!')
+        vm.disabled = true
+      } else {
+        vm.disabled = false
+      }
       // 紀錄這次的答案
       vm.record()
     },
+    // 紀錄歷史答案
     record() {
       const vm = this
       vm.history.push({
@@ -135,6 +146,7 @@ export default {
         result: `${vm.result.A}A${vm.result.B}B`,
       })
     },
+    // 清除目前input的value
     clear() {
       const vm = this
       vm.answer = [null, null, null, null]
