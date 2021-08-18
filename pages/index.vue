@@ -44,6 +44,8 @@ import Scroll from '@/components/Scroll';
 </template>
 
 <script>
+import frontendApi from '@/assets/js/api/frontendApi.js';
+
 export default {
   data() {
     return {
@@ -60,8 +62,17 @@ export default {
   mounted() {
     const vm = this
     vm.randomQuestion()
+    vm.getUser(1);
   },
   methods: {
+    // 取得特定用戶
+    async getUser(id) {
+      const obj = {id}
+      const res = await frontendApi.getUser(obj);
+      if (res.code === 200) {
+        console.log(res);
+      }
+    },
     changeAnswer(data) {
       const vm = this
       vm.$set(vm.answer, data.index, data.answer)
